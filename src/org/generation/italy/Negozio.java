@@ -12,8 +12,8 @@ public class Negozio {
 		carrello= new ArrayList<>();
 	}
 	
-	public void InserimentoProdotto(String codice, String descrizione, float prezzo, int quantitàDisponibile) {
-		Prodotto prodInserito=new Prodotto(codice,descrizione,prezzo,quantitàDisponibile);
+	public void InserimentoProdotto(String codice, String descrizione,float sconto, float prezzo, int quantitàDisponibile) {
+		Prodotto prodInserito=new Prodotto(codice,descrizione,sconto,prezzo,quantitàDisponibile);
 		listaProdotti.add(prodInserito);
 		System.out.println("L'oggetto "+ prodInserito.getCodice()+ "è stato inserito correttamente alla lista prodotti");
     }
@@ -22,7 +22,7 @@ public class Negozio {
 		System.out.println("Elenco prodotti: \n\n");
 		for(Prodotto prod :listaProdotti) {
 			System.out.println("codice: "+prod.getCodice()+"\nDescrizione: "+prod.getDecsizione()
-			+"\nPrezzo: €"+prod.getPrezzo()+"\nsconto: "+prod.getSconto()+"%\nQuantità: "+prod.getQuantitàDisponibile());
+			+"\nPrezzo: €"+prod.getPrezzo()+"\nsconto: "+prod.getSconto()+"%\nQuantità: "+prod.getUnitàAcquistate());
 		}
 	}
 	public void ApplicaSconto(float sconto,String codiceProdotto) {
@@ -42,18 +42,19 @@ public class Negozio {
 		for(Prodotto prod : listaProdotti) {
 			if(prod.getDecsizione().equals(prodottoScelto)) {
 				System.out.println("Inserisci la quantità desiderata");
-				int unità = Integer.parseInt(sc.nextLine());
+				float unità = Float.parseFloat(sc.nextLine());
 				if(unità<=prod.getQuantitàDisponibile()) {
 					prod.setQuantitàDisponibile(unità);
+					prod.setUnitàAcquistate(unità);
 				    carrello.add(prod);
 				    System.out.println("");
 				}	
 				else
 					System.out.println("Quantità disponibile non sufficente");
-			}
-			else
-				System.out.println("Prodotto non trovato");
+				return;
+			}		
 		}
+		System.out.println("Prodotto non trovato");
 		}
 	
 	public void listaCarrello() {
@@ -62,5 +63,12 @@ public class Negozio {
 			System.out.println("codice: "+prod.getCodice()+"\nDescrizione: "+prod.getDecsizione()
 			+"\nPrezzo: €"+prod.getPrezzo()+"\nsconto: "+prod.getSconto()+"%\nQuantità: "+prod.getQuantitàDisponibile());
 		}
+	}
+	public void costo() {
+		float costoTot=0;
+		for(Prodotto prod: carrello) {
+			 costoTot=+ prod.getPrezzo()*prod.getUnitàAcquistate();
+		}
+		System.out.println(costoTot);
 	}
 }

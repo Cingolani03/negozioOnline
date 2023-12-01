@@ -9,11 +9,12 @@ public class Main {
 		System.out.println("Benvenuto nel negozio online. Definisci gli oggetti che vuoi inserire tra i prodotti");
 		Negozio Nike =new Negozio();
 		
-		Nike.InserimentoProdotto("StS001","T-Shirt taglia s",38,5);
-		Nike.InserimentoProdotto("StS002","T-Shirt taglia L",35,6);
-		Nike.InserimentoProdotto("StS003","T-Shirt taglia M",40,7);
+		Nike.InserimentoProdotto("StS001","T-Shirt taglia s",0,38,5);
+		Nike.InserimentoProdotto("StS002","T-Shirt taglia L",0,35,6);
+		Nike.InserimentoProdotto("StS003","T-Shirt taglia M",0,40,7);
+		boolean chek=true;
 		
-		while(true) {
+		while(chek) {
 			System.out.println("quale operazione vuoi eseguire? \n[1]-Inserimento prodotto "
 					+ "\n[2]-Inserisci nel carrello \n[3]-Mostra carrello \n[4]-Aquista");
 			sceltaOp=sc.nextLine();
@@ -31,9 +32,11 @@ public class Main {
 				float sconto = Float.parseFloat(sc.nextLine());
 				if(sconto>0) {
 					Nike.ApplicaSconto(sconto, codice);
+					
 					prezzo=prezzo-(prezzo*(sconto/100));
+					
 				}
-				Nike.InserimentoProdotto(codice, descrizione, prezzo, quantitàDisponibile);
+				Nike.InserimentoProdotto(codice, descrizione, prezzo, quantitàDisponibile, quantitàDisponibile);
 				break;
 			case 2:
 				Nike.ElencoProd();
@@ -48,7 +51,10 @@ public class Main {
 				break;
 				
 			case 5:
-				
+				System.out.println("Il costo totsle dell'ordine è: €");
+				Nike.costo();
+				chek=false;
+				default;
 			}
 		}
 	}
