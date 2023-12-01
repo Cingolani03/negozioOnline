@@ -3,9 +3,9 @@ package org.generation.italy;
 import java.util.Scanner;
 
 public class Main {
-	public void main() {
+	public static void main(String[]args) {
 		Scanner sc=new Scanner(System.in);
-		String sceltaOp;
+		int sceltaOp;
 		System.out.println("Benvenuto nel negozio online. Definisci gli oggetti che vuoi inserire tra i prodotti");
 		Negozio Nike =new Negozio();
 		
