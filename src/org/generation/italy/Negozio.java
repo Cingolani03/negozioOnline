@@ -13,6 +13,20 @@ public class Negozio {
 	}
 	
 	public void InserimentoProdotto(String codice, String descrizione,float sconto, float prezzo, int quantitàDisponibile) {
+		System.out.println("Inserimento del prodotto: \n Codice: ");
+	    codice = sc.nextLine();
+		System.out.println("\nDescrizione: ");
+		descrizione =sc.nextLine();
+		System.out.println("\nCosto: ");
+		prezzo =Float.parseFloat(sc.nextLine());
+		System.out.println("\nQuantità disponibile");
+		quantitàDisponibile=Integer.parseInt(sc.nextLine());
+		sconto = Float.parseFloat(sc.nextLine());
+		
+		if(sconto>0) {
+			//ApplicaSconto(sconto, codice);			
+			prezzo=prezzo-(prezzo*(sconto/100));			
+		}	
 		Prodotto prodInserito=new Prodotto(codice,descrizione,sconto,prezzo,quantitàDisponibile);
 		listaProdotti.add(prodInserito);
 		System.out.println("L'oggetto "+ prodInserito.getCodice()+ "è stato inserito correttamente alla lista prodotti");
@@ -21,18 +35,17 @@ public class Negozio {
 	public void ElencoProd() {
 		System.out.println("Elenco prodotti: \n\n");
 		for(Prodotto prod :listaProdotti) {
-			System.out.println("codice: "+prod.getCodice()+"\nDescrizione: "+prod.getDecsizione()
-			+"\nPrezzo: €"+prod.getPrezzo()+"\nsconto: "+prod.getSconto()+"%\nQuantità: "+prod.getUnitàAcquistate());
+			System.out.println("\ncodice: \t\t"+prod.getCodice()+"\nDescrizione: \t\t"+prod.getDecsizione()
+			+"\nPrezzo: \t\t€"+prod.getPrezzo()+"\nsconto: \t\t"+prod.getSconto()+"%\nQuantità: \t\t"+prod.getUnitàAcquistate());
 		}
 	}
-	public void ApplicaSconto(float sconto,String codiceProdotto) {
-		for(Prodotto prod : listaProdotti) {
-			if(prod.getCodice().equals(codiceProdotto))
-				prod.setSconto(sconto);
-			return;
-		}
-		System.out.println("prodotto non trovato");
-	}
+//	public void ApplicaSconto(float sconto,String codiceProdotto) {
+//		for(Prodotto prod : listaProdotti) {
+//			if(prod.getCodice().equals(codiceProdotto))
+//				prod.setSconto(sconto);
+//			return;
+//		}
+//	}
 	Scanner sc=new Scanner(System.in);
 	public void VenditaProdotti() {
 
@@ -60,14 +73,15 @@ public class Negozio {
 	public void listaCarrello() {
 		System.out.println("Il carrello attualmente è: ");
 		for(Prodotto prod : carrello) {
-			System.out.println("codice: "+prod.getCodice()+"\nDescrizione: "+prod.getDecsizione()
-			+"\nPrezzo: €"+prod.getPrezzo()+"\nsconto: "+prod.getSconto()+"%\nQuantità: "+prod.getQuantitàDisponibile());
+			System.out.println("codice: \t\t"+prod.getCodice()+"\nDescrizione: \t\t"+prod.getDecsizione()
+			+"\nPrezzo: \t\t€"+prod.getPrezzo()+"\nsconto: \t\t"+prod.getSconto()+"%\nQuantità: \t\t"+prod.getQuantitàDisponibile());
 		}
 	}
 	public void costo() {
 		float costoTot=0;
 		for(Prodotto prod: carrello) {
-			 costoTot=+ prod.getPrezzo()*prod.getUnitàAcquistate();
+			 costoTot =prod.getPrezzo()*prod.getUnitàAcquistate();
+			 prod.setUnitàAcquistate(0);
 		}
 		System.out.println(costoTot);
 	}

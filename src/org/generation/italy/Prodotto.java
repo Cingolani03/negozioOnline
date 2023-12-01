@@ -9,7 +9,7 @@ class Prodotto {
 		this.codice = codice;
 		this.descrizione = descrizione;
 		this.prezzo = prezzo;
-		this.sconto = 0;
+		this.sconto = sconto;
 		this.quantitàDisponibile = quantitàDisponibile;
 		this.unitàAcquistate=0;
 	}

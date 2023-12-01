@@ -9,38 +9,24 @@ public class Main {
 		System.out.println("Benvenuto nel negozio online. Definisci gli oggetti che vuoi inserire tra i prodotti");
 		Negozio Nike =new Negozio();
 		
-		Nike.InserimentoProdotto("StS001","T-Shirt taglia s",0,38,5);
-		Nike.InserimentoProdotto("StS002","T-Shirt taglia L",0,35,6);
-		Nike.InserimentoProdotto("StS003","T-Shirt taglia M",0,40,7);
 		boolean chek=true;
-		
+//		Nike.InserimentoProdotto("001", "maglia", 0, 30, 5);
+//		Nike.InserimentoProdotto("002", "gaicca", 0, 50, 6);
+//		Nike.InserimentoProdotto("003", "pantalone", 0, 40, 7);
 		while(chek) {
 			System.out.println("quale operazione vuoi eseguire? \n[1]-Inserimento prodotto "
-					+ "\n[2]-Inserisci nel carrello \n[3]-Mostra carrello \n[4]-Aquista");
+					+ "\n[2]-Mostra prodotti disponiobili \n[3]-Inserisci nel carrello \n[4]-Mostra carrello"
+					+ " \n[5]-Aquista\n[6]-esci");
+			System.out.println("pzione");
 			sceltaOp=sc.nextLine();
 			
 			switch(sceltaOp) {
 			case 1:
-				System.out.println("Inserimento del prodotto: \n Codice: ");
-				String codice = sc.nextLine();
-				System.out.println("\nDescrizione: ");
-				String descrizione =sc.nextLine();
-				System.out.println("\nCosto: ");
-				float prezzo =Float.parseFloat(sc.nextLine());
-				System.out.println("\nQuantità disponibile");
-				int quantitàDisponibile=Integer.parseInt(sc.nextLine());
-				float sconto = Float.parseFloat(sc.nextLine());
-				if(sconto>0) {
-					Nike.ApplicaSconto(sconto, codice);
-					
-					prezzo=prezzo-(prezzo*(sconto/100));
-					
-				}
-				Nike.InserimentoProdotto(codice, descrizione, prezzo, quantitàDisponibile, quantitàDisponibile);
+				Nike.InserimentoProdotto(null,null,0,0,0);
 				break;
-			case 2:
+			case 2 :
 				Nike.ElencoProd();
-				break;
+				break; 
 				
 			case 3:
 				Nike.VenditaProdotti();
@@ -51,10 +37,14 @@ public class Main {
 				break;
 				
 			case 5:
-				System.out.println("Il costo totsle dell'ordine è: €");
+				System.out.println("\nIl costo totsle dell'ordine è: €");
 				Nike.costo();
-				chek=false;
-				default;
+				case 6:
+					chek=false;
+				break;
+				default:
+					System.out.println("Operazione non disponibile");
+					break;
 			}
 		}
 	}
