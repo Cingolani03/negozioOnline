@@ -18,7 +18,7 @@ public class Main {
 					+ "\n[2]-Mostra prodotti disponiobili \n[3]-Inserisci nel carrello \n[4]-Mostra carrello"
 					+ " \n[5]-Aquista\n[6]-esci");
 			System.out.println("pzione");
-			sceltaOp=sc.nextLine();
+			sceltaOp=Integer.parseInt(sc.nextLine());
 			
 			switch(sceltaOp) {
 			case 1:
