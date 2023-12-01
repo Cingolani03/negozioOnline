@@ -46,6 +46,7 @@ public class Negozio {
 				if(unità<=prod.getQuantitàDisponibile()) {
 					prod.setQuantitàDisponibile(unità);
 				    carrello.add(prod);
+				    System.out.println("");
 				}	
 				else
 					System.out.println("Quantità disponibile non sufficente");

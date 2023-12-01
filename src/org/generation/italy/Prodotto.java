@@ -12,6 +12,9 @@ class Prodotto {
 		this.sconto = 0;
 		this.quantitàDisponibile = quantitàDisponibile;
 	}
+	public float prezzoScontato() {
+		return prezzo-(prezzo*(sconto/100));
+	}
 	public String getCodice() {
 		return codice;
 	}
